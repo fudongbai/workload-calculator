@@ -46,7 +46,16 @@ public class UiAutomation extends BaseUiAutomation {
 
     @Test
     public void runWorkload() throws Exception {
-	   // The main UI Automation code goes here
+        // The main UI Automation code goes here
+        UiObject digit =
+            mDevice.findObject(new UiSelector().resourceId(packageID + "digit_8"));
+        digit.click();
+        UiObject op = mDevice.findObject(new UiSelector().resourceId(packageID + "op_add"));
+        op.click();
+        digit = mDevice.findObject(new UiSelector().resourceId(packageID + "digit_9"));
+        digit.click();
+        UiObject result = mDevice.findObject(new UiSelector().resourceId(packageID + "eq"));
+        result.click();
     }
 
     @Test

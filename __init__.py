@@ -6,12 +6,12 @@ class Calculator(ApkUiautoWorkload):
     name = 'calculator'
     description = "This is an placeholder description"
     # Replace with a list of supported package names in the APK file(s).
-    package_names = ['package_name']
+    package_names = ['com.android.calculator2']
 
     parameters = [
         # Workload parameters go here e.g.
         Parameter('example_parameter', kind=int, allowed_values=[1,2,3],
-                  default=1, override=True, mandatory=False,
+                  default=1, override=False, mandatory=False,
                   description='This is an example parameter')
     ]
 
