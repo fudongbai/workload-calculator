@@ -19,10 +19,13 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
+import com.arm.wa.uiauto.ApplaunchInterface;
 import com.arm.wa.uiauto.BaseUiAutomation;
+import com.arm.wa.uiauto.ActionLogger;
+import com.arm.wa.uiauto.UiAutoUtils;
 
 @RunWith(AndroidJUnit4.class)
-public class UiAutomation extends BaseUiAutomation {
+public class UiAutomation extends BaseUiAutomation implements ApplaunchInterface {
 
     protected Bundle parameters;
     protected String packageID;
@@ -66,5 +69,30 @@ public class UiAutomation extends BaseUiAutomation {
     @Test
     public void teardown() throws Exception {
         // Optional: Perform any clean up for the workload
+    }
+
+    public void runApplicationSetup() throws Exception {
+        // do nothing;
+    }
+
+    // Sets the UiObject that marks the end of the application launch.
+    public UiObject getLaunchEndObject() {
+        UiObject launchEndObject =
+                        mDevice.findObject(new UiSelector().resourceId(packageID + "digit_8")
+                                                           .className("android.widget.Button"));
+        return launchEndObject;
+    }
+
+    // Returns the launch command for the application.
+    public String getLaunchCommand() {
+        String launch_command;
+        launch_command = UiAutoUtils.createLaunchCommand(parameters);
+        return launch_command;
+    }
+
+    // Pass the workload parameters, used for applaunch
+    public void setWorkloadParameters(Bundle workload_parameters) {
+        parameters = workload_parameters;
+        packageID = getPackageID(parameters);
     }
 }
